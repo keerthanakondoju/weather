@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX</title>
+    <script>
+        /*function disp(){
+            var request = new XMLHttpRequest();
+        if(sel.value=='1')
+        {
+            request.open("GET","https://api.openweathermap.org/data/2.5/weather?q=Hyderabad&appid=93f26e3c57081a6210de53b8dcfdfea4",true);
+        }
+        if(sel.value=='2')
+        {
+            request.open("GET","https://api.openweathermap.org/data/2.5/weather?q=Mumbai&appid=93f26e3c57081a6210de53b8dcfdfea4",true);
+        }
+        if(sel.value=='3')
+        {
+            request.open("GET","https://api.openweathermap.org/data/2.5/weather?q=Delhi&appid=93f26e3c57081a6210de53b8dcfdfea4",true);
+        }
+        if(sel.value=='4')
+        {
+            request.open("GET","https://api.openweathermap.org/data/2.5/weather?q=Chennai&appid=93f26e3c57081a6210de53b8dcfdfea4",true);
+        }
+        if(sel.value=='5')
+        {
+            request.open("GET","https://api.openweathermap.org/data/2.5/weather?q=Kolkata&appid=93f26e3c57081a6210de53b8dcfdfea4",true);
+        }
+        request.onload =  function()
+        {
+            if( request.status>=200 && request.status<400){
+                var data = JSON.parse(request.responseText);
+                console.log(data);
+                document.getElementById('temp').append(data.main.temp);
+                document.getElementById('weather').append(data.weather[0].description);
+                document.getElementById('humidity').append(data.main.humidity);
+                document.getElementById('feelslike').append(data.main.feels_like);
+                document.getElementById('maxtemp').append(data.main.temp_max);
+                document.getElementById('mintemp').append(data.main.temp_min);
+                var icon = data.weather[0].icon+".png";
+                document.getElementById('myimg').src = "https://openweathermap.org/img/w/"+icon ;
+            }
+            else {
+                console.log("some error");
+            }
+        };
+        request.onerror = function(){
+            console.log("connection error");
+        };
+       request.send();
+        }*/
+        function disp2()
+        {
+            var request = new XMLHttpRequest();
+            var text= document.querySelector('.inputtext');
+            request.open("GET","https://api.openweathermap.org/data/2.5/weather?q="+text.value+"&appid=93f26e3c57081a6210de53b8dcfdfea4",true);
+            request.onload =  function()
+        {
+            if( request.status>=200 && request.status<400){
+                var data = JSON.parse(request.responseText);
+                console.log(data);
+                document.getElementById('temp').append(data.main.temp);
+                document.getElementById('weather').append(data.weather[0].description);
+                document.getElementById('humidity').append(data.main.humidity);
+                document.getElementById('feelslike').append(data.main.feels_like);
+                document.getElementById('maxtemp').append(data.main.temp_max);
+                document.getElementById('mintemp').append(data.main.temp_min);
+                var icon = data.weather[0].icon+".png";
+                document.getElementById('myimg').src = "https://openweathermap.org/img/w/"+icon ;
+            }
+            else {
+                console.log("some error");
+            }
+        };
+        request.onerror = function(){
+            console.log("connection error");
+        };
+       request.send();
+        }
+    </script>
+    <style>
+        .h1tag{
+            border-style:solid;
+            border-color: darkblue;
+            border-width: 0.5em;
+            padding: 1em;
+            margin: 1em;
+        }
+    </style>
+</head>
+<body style="background-image: url(wimg.jpg); background-position: center; background-size: 10000px 10000px; background-repeat: no-repeat; text-align: center;">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h1 class="h1tag"> Get to know today's Weather </h1>
+                <input type="text" placeholder="type a city name" class="inputtext">
+                <button type="button" onclick="disp2();">clickkkkk</button>
+                <h2 id="temp">  Temp here : </h2>
+                <h2 id="weather">  Weather here : </h2>
+                <h2 id="feelslike"> Feels Like : </h2>
+                <h2 id="humidity"> humidity : </h2>
+                <h2 id="maxtemp"> Maximum Temperature : </h2>
+                <h2 id="mintemp"> Minimum Temperature : </h2>
+                <img id="myimg" src="img.png" alt="weatherimagehere"/>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
